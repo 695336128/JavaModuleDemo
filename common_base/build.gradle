@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.versions.minSdkVersion
+        targetSdkVersion rootProject.ext.versions.targetSdkVersion
+        versionCode rootProject.ext.versions.versionCode
+        versionName rootProject.ext.versions.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Arouter 路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName()]
+                includeCompileClasspath = true
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api rootProject.ext.dependencies["appcompat_v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["junit"]
+    api rootProject.ext.dependencies["runner"]
+    api rootProject.ext.dependencies["espresso-core"]
+    api rootProject.ext.dependencies["multidex"]
+
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    api rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxrelay"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["avi"]
+    api rootProject.ext.dependencies["logger"]
+    annotationProcessor rootProject.ext.dependencies["arouter_compiler"]
+    api rootProject.ext.dependencies["arouter_api"]
+    api rootProject.ext.dependencies["arouter_annotation"]
+    api rootProject.ext.dependencies["filedownloader"]
+    api rootProject.ext.dependencies["zxing"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide-transformations"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["cardview-v7"]
+    api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["velocity-engine-core"]
+    api rootProject.ext.dependencies["bugly"]
+
+    implementation(name: 'lottie-2.7.0', ext: 'aar')
+}
